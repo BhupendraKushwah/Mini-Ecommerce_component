@@ -1,11 +1,12 @@
-import logo from './logo.svg';
+
 import './App.css';
 import Product from './Component/Product';
+import Home from './Component/Home';
 
 function App() {
   return (
     <div className="App">
-      <Product/>
+      <Home/>
     </div>
   );
 }
