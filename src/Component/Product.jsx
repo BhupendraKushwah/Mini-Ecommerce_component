@@ -1,14 +1,11 @@
 
 import React, { useState } from 'react';
 
-const Product = ({item}) => {
-  const handleAddToCart = (id) =>{
-    console.log(id);
-  }
+const Product = ({item,addToCart}) => {
+  
   return (
     <div className="product-container">
       <div className="product-image">
-        {console.log(item)}
         <img src={item.img} alt={item.title} />
       </div>
       <div className="product-details">
@@ -17,7 +14,7 @@ const Product = ({item}) => {
         <p className="product-price">{item.price}</p>
         <label htmlFor="quantity">Quantity:</label>
         <div className="quantity-control">
-          <button className="add-to-cart-btn" onClick={()=>handleAddToCart(item._id)}>
+          <button className="add-to-cart-btn" onClick={()=>addToCart(item._id)}>
             Add to Cart
           </button>
         </div>

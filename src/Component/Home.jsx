@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Product from './Product'
 
-const Home = () => {
+const Home = ({addToCart}) => {
     const [product,setProduct]=useState([])
     useEffect(()=>{
         const fetchProducts=async()=>{
@@ -14,7 +14,7 @@ const Home = () => {
   return (
    <div className="container">
     {product.map(item=>{
-        return <Product key={item._id} item={item}/>
+        return <Product key={item._id} item={item} addToCart={addToCart}/>
     })
     }
     </div>
