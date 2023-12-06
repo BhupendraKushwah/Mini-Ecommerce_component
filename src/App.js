@@ -5,25 +5,29 @@ import Cart from './Component/Cart';
 import { useState } from 'react';
 import axios from 'axios';
 import Navbar from './Component/Navbar';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   const [cart, setCart] = useState([]);
-  const [showCart,setShowCart] = useState(false);
-  const handleCartShow=(prev)=>{
-    setShowCart((prev)=>!prev)
+  const [showCart, setShowCart] = useState(false);
+
+  const handleCartShow = (status) => {
+    setShowCart(status)
   }
   const addToCart = async (productId) => {
-    // Send a POST request to add the product to the cart
-    const response = await axios.post('http://localhost:5000/add-to-cart', { productId });
-    setCart(response.data.cart);
+    const response = await axios.post('http://localhost:5000/add-to-cart', { productId, quantity: 1 });
+    setCart(response.data);
+    console.log(response.data,productId)
   };
 
   return (
-    <div className="App">
-      <Navbar handleCartShow={handleCartShow}/>
-      {!showCart?<Home addToCart={addToCart}/>:
-      <Cart cart={cart}/>}
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Navbar handleCartShow={handleCartShow} />
+        {!showCart ? <Home addToCart={addToCart} /> :
+          <Cart cart={cart} />}
+      </div>
+    </BrowserRouter>
   );
 }
 
